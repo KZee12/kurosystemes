@@ -1,11 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  FaUser,
-  FaEnvelope,
-  FaBriefcase,
-  FaLink,
-} from "react-icons/fa";
+import { FaUser, FaEnvelope, FaBriefcase, FaLink } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import a from "../assets/Careers2.avif";
 import { toast, ToastContainer } from "react-toastify";
@@ -263,7 +258,7 @@ const Careers = () => {
                         }`}
                       >
                         <PhoneInput
-                          country={"in"}
+                          country={"us"}
                           value={formData.phone}
                           onChange={handlePhoneChange}
                           placeholder={field.placeholder}
