@@ -248,6 +248,22 @@ const ContactUs = () => {
           border-top-width: 5px;
         }
       }
+      
+      .contact-section {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
+      }
+      
+      .contact-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url('data:image/svg+xml,%3Csvg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" opacity=".05"%3E%3Cpath d="M0 0h2v2H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM8 8h2v2H8zM10 10h2v2H10zM12 12h2v2H12zM14 14h2v2H14zM16 16h2v2H16zM18 18h2v2H18zM20 20h2v2H20zM22 22h2v2H22zM24 24h2v2H24zM26 26h2v2H26zM28 28h2v2H28zM30 30h2v2H30zM32 32h2v2H32z" fill="%2355DDFF"/%3E%3C/svg%3E');
+        background-size: 34px 34px;
+        pointer-events: none;
+        z-index: -1;
+      }
     `;
 
     document.head.appendChild(style);
