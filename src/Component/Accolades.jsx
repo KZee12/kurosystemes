@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import certificate from "../assets/Accolades.jpg";
-import indiaflag from "../assets/indiaflag.png";
+import indiaflag from "../assets/IndiaFlag.png";
 import germanyflag from "../assets/germanyflag.png";
 
 const Accolades = () => {

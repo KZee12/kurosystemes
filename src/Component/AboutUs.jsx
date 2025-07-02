@@ -392,7 +392,7 @@ const AboutUs = () => {
 
   return (
     <section className="w-full p-0 m-0 overflow-x-hidden">
-     {/* hero */}
+      {/* hero */}
       <div
         className="relative bg-cover bg-center 
         min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] 
@@ -429,26 +429,28 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-16 space-y-8 sm:space-y-12 md:space-y-16">
+        {/* History Section */}
+        <div
+          ref={historyRef}
+          className="relative max-w-6xl mx-auto px-4 sm:px-6"
+        >
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 font-bold">
+            <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                History
+              </span>
+            </h2>
 
-{/* History Section */}
-<div ref={historyRef} className="relative max-w-6xl mx-auto px-4 sm:px-6">
-  <div className="text-center mb-6 sm:mb-8 md:mb-10 font-bold">
-    <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
-      Our{" "}
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-        History
-      </span>
-    </h2>
-    
-    {/* Timeline line */}
-    <div className="mt-4 sm:mt-6 absolute w-1 md:w-1.5 h-full bg-[#00abf0] left-4 lg:left-1/2 transform lg:-translate-x-1/2 animate-[moveline_7s_linear_forwards] z-[-1]"></div>
-    <div className="w-20 sm:w-24 md:w-28 lg:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-  </div>
-  
-  {sections.map((section, idx) => (
-    <div
-      key={idx}
-      className={`
+            {/* Timeline line */}
+            <div className="mt-4 sm:mt-6 absolute w-1 md:w-1.5 h-full bg-[#00abf0] left-4 lg:left-1/2 transform lg:-translate-x-1/2 animate-[moveline_7s_linear_forwards] z-[-1]"></div>
+            <div className="w-20 sm:w-24 md:w-28 lg:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          </div>
+
+          {sections.map((section, idx) => (
+            <div
+              key={idx}
+              className={`
         relative 
         w-full
         pl-8 lg:pl-0
@@ -456,37 +458,50 @@ const AboutUs = () => {
         p-3 sm:p-4 md:p-6 lg:p-8 
         animate-[movedown_2s_linear_forwards] 
         opacity-0 
-        ${idx % 2 === 0 ? 'lg:mr-auto lg:pr-3 xl:pr-6 2xl:pr-8' : 'lg:ml-auto lg:pl-3 xl:pl-6 2xl:pl-8'} 
-        ${idx === 0 ? 'animation-delay-0' : idx === 1 ? 'animation-delay-1' : idx === 2 ? 'animation-delay-2' : 'animation-delay-3'}
+        ${
+          idx % 2 === 0
+            ? "lg:mr-auto lg:pr-3 xl:pr-6 2xl:pr-8"
+            : "lg:ml-auto lg:pl-3 xl:pl-6 2xl:pl-8"
+        } 
+        ${
+          idx === 0
+            ? "animation-delay-0"
+            : idx === 1
+            ? "animation-delay-1"
+            : idx === 2
+            ? "animation-delay-2"
+            : "animation-delay-3"
+        }
         mb-6 sm:mb-8
       `}
-    >
-      <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 relative shadow-lg">
-        <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-xl sm:text-xl md:text-xl lg:text-2xl text-center text-blue-400">
-          {section.title}
-        </div>
-        <p className="text-white text-md sm:text-sm md:text-base lg:text-lg leading-relaxed">
-          {section.content}
-        </p>
-        
-        {/* Triangle pointer */}
-        <span
-          className={`
+            >
+              <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 relative shadow-lg">
+                <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-xl sm:text-xl md:text-xl lg:text-2xl text-center text-blue-400">
+                  {section.title}
+                </div>
+                <p className="text-white text-md sm:text-sm md:text-base lg:text-lg leading-relaxed">
+                  {section.content}
+                </p>
+
+                {/* Triangle pointer */}
+                <span
+                  className={`
             absolute top-4 sm:top-6 md:top-8 
             border-t-[6px] border-b-[6px] sm:border-t-[8px] sm:border-b-[8px] md:border-t-[10px] md:border-b-[10px] lg:border-t-[12px] lg:border-b-[12px]
             border-t-transparent border-b-transparent 
             left-[-6px] border-r-[6px] border-r-white/20
             lg:border-r-0 lg:left-auto lg:right-auto
-            ${idx % 2 === 0 
-              ? 'lg:right-[-8px] xl:right-[-10px] 2xl:right-[-12px] lg:border-l-[8px] xl:border-l-[10px] 2xl:border-l-[12px] lg:border-l-white/20' 
-              : 'lg:left-[-8px] xl:left-[-10px] 2xl:left-[-12px] lg:border-r-[8px] xl:border-r-[10px] 2xl:border-r-[12px] lg:border-r-white/20'
+            ${
+              idx % 2 === 0
+                ? "lg:right-[-8px] xl:right-[-10px] 2xl:right-[-12px] lg:border-l-[8px] xl:border-l-[10px] 2xl:border-l-[12px] lg:border-l-white/20"
+                : "lg:left-[-8px] xl:left-[-10px] 2xl:left-[-12px] lg:border-r-[8px] xl:border-r-[10px] 2xl:border-r-[12px] lg:border-r-white/20"
             }
           `}
-        ></span>
-      </div>
-    </div>
-  ))}
-</div>
+                ></span>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Core Philosophy */}
         <div
