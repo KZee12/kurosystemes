@@ -14,7 +14,7 @@ import {
   FaCubes,
 } from "react-icons/fa";
 import { useSwipeable } from "react-swipeable";
-import industry4 from "../assets/Industry4.gif";
+import industry from "../assets/Industry4.gif"; // ✅ correct
 
 import Picture1 from "../assets/Picture1.png";
 import Picture2 from "../assets/Picture2.jpg";
@@ -242,7 +242,7 @@ const Home = () => {
             </div>
             <div className="ml-0 md:ml-10 md:w-[75%] mt-6 xs:mt-8 md:mt-0 bg-white bg-clip-padding backdrop-filter backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/30">
               <img
-                src={industry4}
+                src={industry}
                 alt="Industry 4.0"
                 className="w-full max-w-[400px] xs:max-w-[500px] md:max-w-[600px] mx-auto rounded-xl"
                 loading="lazy"
