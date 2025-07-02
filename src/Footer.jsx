@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Logo from "./assets/KuroLogo.png";
@@ -26,47 +27,49 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Quick Links */}
           <div className="text-center sm:text-left">
-            <h3 className="font-semibold mb-2 sm:mb-3  md:mb-4 text-base sm:text-lg">
+            <h3 className="font-semibold mb-2 sm:mb-3 md:mb-4 text-base sm:text-lg">
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-y-1 sm:gap-y-2 text-gray-400 text-xs sm:text-sm md:text-base">
-              <a href={`/`} className="hover:text-white transition-colors">
+              <Link to="/" className="hover:text-white transition-colors">
                 Home
-              </a>
-              <a
-                href={`/aboutus`}
+              </Link>
+              <Link
+                to="/aboutus"
                 className="hover:text-white transition-colors"
               >
                 About Us
-              </a>{" "}
-              <a
-                href={`/offering`}
+              </Link>
+              <Link
+                to="/offering"
                 className="hover:text-white transition-colors"
               >
                 Offering
-              </a>{" "}
-              <a
-                href={`/successtories`}
+              </Link>
+              <Link
+                to="/successstories"
                 className="hover:text-white transition-colors"
               >
                 Success Stories
-              </a>{" "}
-              <a
-                href={`/careers`}
+              </Link>
+              <Link
+                to="/careers"
                 className="hover:text-white transition-colors"
               >
                 Careers
-              </a>{" "}
-              <a
-                href={`/contactus`}
+              </Link>
+              <Link
+                to="/contactus"
                 className="hover:text-white transition-colors"
               >
                 Contact Us
-              </a>
+              </Link>
             </ul>
           </div>
 
+          {/* Social */}
           <div className="text-center sm:text-left">
             <h3 className="font-semibold text-base sm:text-lg mb-2 sm:mb-3 md:mb-4">
               Social
