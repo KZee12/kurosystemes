@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import kurologo from "./assets/kurologo.png";
+import kurologo from "./assets/KuroLogo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
