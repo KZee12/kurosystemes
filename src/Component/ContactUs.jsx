@@ -87,6 +87,7 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setStatus("loading");
     emailjs
       .sendForm(
         "service_hgrw6l9",
@@ -106,7 +107,8 @@ const ContactUs = () => {
             message: "",
           });
         },
-        () => {
+        (error) => {
+          console.error("EmailJS Error:", error);
           setStatus("error");
         }
       );
@@ -211,7 +213,7 @@ const ContactUs = () => {
         color: #000 !important;
       }
       
-      button {
+      .Button {
         width: 100%;
         height: 2.5rem;
         background: linear-gradient(90deg, #4B5EAA, #8A4AF3);
@@ -223,7 +225,7 @@ const ContactUs = () => {
         transition: background 0.3s ease;
       }
       
-      button:hover {
+      .Button:hover {
         background: linear-gradient(90deg, #3A4E9A, #7A3AE3);
       }
       
@@ -245,22 +247,6 @@ const ContactUs = () => {
         .react-tel-input .selected-flag::after {
           border-top-width: 5px;
         }
-      }
-      
-      .contact-section {
-        position: relative;
-        z-index: 1;
-        background: linear-gradient(135deg, rgba(10, 25, 47, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
-      }
-      
-      .contact-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: url('data:image/svg+xml,%3Csvg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" opacity=".05"%3E%3Cpath d="M0 0h2v2H0zM2 2h2v2H2zM4 4h2v2H4zM6 6h2v2H6zM8 8h2v2H8zM10 10h2v2H10zM12 12h2v2H12zM14 14h2v2H14zM16 16h2v2H16zM18 18h2v2H18zM20 20h2v2H20zM22 22h2v2H22zM24 24h2v2H24zM26 26h2v2H26zM28 28h2v2H28zM30 30h2v2H30zM32 32h2v2H32z" fill="%2355DDFF"/%3E%3C/svg%3E');
-        background-size: 34px 34px;
-        pointer-events: none;
-        z-index: -1;
       }
     `;
 
@@ -307,7 +293,7 @@ const ContactUs = () => {
         </div>
       </div>
       <main className="relative flex-grow contact-section pt-16 px-4 md:px-0">
-        <div className="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-stretch px-3 mb-10">
+        <div className="relative z-10 max-w-6xl mx-auto flex flex-col gap-8 md:gap-12 items-stretch px-3 mb-10 sm:px-4 md:flex-row">
           <div className="md:w-1/2 form-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg mb-4 flex justify-center flex-col">
             <h2 className="text-2xl md:text-3xl text-center text-white mb-6 font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-md">
               Get in Touch
@@ -336,7 +322,7 @@ const ContactUs = () => {
                 <label>Phone</label>
                 <div className="relative">
                   <PhoneInput
-                    country={"in"}
+                    country={"us"}
                     value={form.phone}
                     onChange={handlePhoneChange}
                     placeholder=""
@@ -369,22 +355,28 @@ const ContactUs = () => {
                   </span>
                 </div>
               </div>
-              <button type="submit">Send Message</button>
-              {status && (
-                <div
-                  className={`text-center font-medium mt-3 ${
-                    status === "success" ? "text-green-400" : "text-red-400"
-                  } drop-shadow`}
-                >
-                  {status === "success"
-                    ? "Thank you! We'll be in touch soon."
-                    : "Something went wrong. Please try again later."}
+              <button type="submit" className="Button">
+                Send Message
+              </button>
+              {status === "loading" && (
+                <div className="text-center font-medium mt-3 text-yellow-400 drop-shadow">
+                  Sending...
+                </div>
+              )}
+              {status === "success" && (
+                <div className="text-center font-medium mt-3 text-green-400 drop-shadow">
+                  Thank you! We'll be in touch soon.
+                </div>
+              )}
+              {status === "error" && (
+                <div className="text-center font-medium mt-3 text-red-400 drop-shadow">
+                  Something went wrong. Please try again later.
                 </div>
               )}
             </form>
           </div>
           <div className="md:w-1/2 flex flex-col gap-12">
-            <div className="info-card rounded-2xl overflow-hidden shadow-lg h-64 md:h-80 border border-white/30 bg-white/20 backdrop-blur-xl">
+            <div className="info-card rounded-2xl overflow-hidden shadow-lg w-full aspect-[16/9] md:h-80 border border-white/30 bg-white/20 backdrop-blur-xl">
               <iframe
                 title="Kuro Systems Location"
                 src="https://www.google.com/maps?q=19.992583,73.739444&z=15&output=embed"
