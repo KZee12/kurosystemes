@@ -15,7 +15,17 @@ const Navbar = () => {
     { to: "/contactus", label: "Contact Us →" },
   ];
 
-  const handleLogoClick = () => navigate("/");
+  const handleLogoClick = () => {
+    navigate("/");
+    window.scrollTo(0, 0);
+  };
+
+  const handleLinkClick = (to) => {
+    navigate(to);
+    // this ensure when i change the page click on any other navlink to refresh page and start from top of page
+    window.scrollTo(0, 0);
+    setIsOpen(false);
+  };
 
   const commonBtnClasses =
     "px-5 py-2 rounded-full text-base font-bold flex items-center justify-start shadow-sm";
@@ -81,9 +91,10 @@ const Navbar = () => {
               <NavLink
                 key={to}
                 to={to}
+                onClick={() => handleLinkClick(to)}
                 className={({ isActive }) =>
                   isActive
-                    ? `${commonBtnClasses} bg-[#d5d5d5] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)]  text-black `
+                    ? `${commonBtnClasses} bg-[#d5d5d5] opacity-80 shadow-[inset_0_0_8px_rgba(200,200,255,1)] text-black`
                     : `px-4 py-2 rounded-full text-base font-bold text-gray-300 hover:text-[#ff2400] hover:font-bold`
                 }
               >
@@ -114,7 +125,7 @@ const Navbar = () => {
               <NavLink
                 key={to}
                 to={to}
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleLinkClick(to)} // Handle click with scroll
                 className={({ isActive }) =>
                   isActive
                     ? `${commonBtnClasses} block w-full bg-gray-800 text-red-400`

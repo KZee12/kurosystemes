@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Logo from "./assets/KuroLogo.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleLinkClick = (to) => {
+    navigate(to);
+    //same a mention in navbar
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-10">
@@ -33,39 +41,23 @@ const Footer = () => {
               Quick Links
             </h3>
             <ul className="grid grid-cols-2 gap-y-1 sm:gap-y-2 text-gray-400 text-xs sm:text-sm md:text-base">
-              <Link to="/" className="hover:text-white transition-colors">
-                Home
-              </Link>
-              <Link
-                to="/aboutus"
-                className="hover:text-white transition-colors"
-              >
-                About Us
-              </Link>
-              <Link
-                to="/offering"
-                className="hover:text-white transition-colors"
-              >
-                Offering
-              </Link>
-              <Link
-                to="/successtories"
-                className="hover:text-white transition-colors"
-              >
-                Success Stories
-              </Link>
-              <Link
-                to="/careers"
-                className="hover:text-white transition-colors"
-              >
-                Careers
-              </Link>
-              <Link
-                to="/contactus"
-                className="hover:text-white transition-colors"
-              >
-                Contact Us
-              </Link>
+              {[
+                { to: "/", label: "Home" },
+                { to: "/aboutus", label: "About Us" },
+                { to: "/offering", label: "Offering" },
+                { to: "/successtories", label: "Success Stories" },
+                { to: "/careers", label: "Careers" },
+                { to: "/contactus", label: "Contact Us" },
+              ].map(({ to, label }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => handleLinkClick(to)}
+                  className="hover:text-white transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
             </ul>
           </div>
 
@@ -107,7 +99,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center border-t border-gray-700 pt-2 sm:pt-3 md:pt-4 space-y-2 sm:space-y-0">
           <p className="text-gray-400 text-xs sm:text-sm">
-            &copy; 2025 KURO Systemes LLP. All rights reserved.
+            © 2025 KURO Systemes LLP. All rights reserved.
           </p>
           <a
             href="#"
