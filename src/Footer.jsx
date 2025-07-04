@@ -49,7 +49,7 @@ const Footer = () => {
                 Offering
               </Link>
               <Link
-                to="/successstories"
+                to="/successtories"
                 className="hover:text-white transition-colors"
               >
                 Success Stories
