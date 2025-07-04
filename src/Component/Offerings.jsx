@@ -128,10 +128,8 @@ const Offerings = () => {
       }
     };
 
-    // Handle initial load
     handleHashNavigation();
 
-    // Handle hash changes (back/forward navigation)
     window.addEventListener("hashchange", handleHashNavigation);
 
     return () => {
@@ -294,7 +292,7 @@ const Offerings = () => {
           return (
             <div
               key={index}
-              id={id} // Add the id attribute for navigation
+              id={id}
               onMouseEnter={() => setHoveredOffering(uniqueId)}
               onMouseLeave={() => setHoveredOffering(null)}
               className={`transition-all duration-500 overflow-hidden cursor-pointer 
@@ -362,11 +360,16 @@ const Offerings = () => {
         style={{ backgroundImage: `url(${Offer})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="pt-4 relative z-10 text-white max-w-3xl space-y-4">
-          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-lg mb-6">
-            Our Offerings
+        <div className="pt-4 relative z-10 text-white max-w-4xl space-y-4">
+          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-lg mb-6  ">
+            Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Offerings
+            </span>
+            <div className=" mt-2 ml-1  w-24 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-800 mx-auto rounded-full" />
           </h1>
-          <p className="text-md md:text-lg drop-shadow-md">
+
+          <p className="text-base md:text-xl drop-shadow-md">
             Explore our innovative solutions designed to elevate your business
             efficiency and performance.
           </p>

@@ -12,9 +12,9 @@ import {
   FaCogs,
   FaEye,
   FaCubes,
-} from "react-icons/fa";
+} from "react-icons/fa"; /* <- icon library*/
 import { useSwipeable } from "react-swipeable";
-import industry from "../assets/Industry4.gif"; // ✅ correct
+import industry from "../assets/Industry4.gif";
 
 import Picture1 from "../assets/Picture1.png";
 import Picture2 from "../assets/Picture2.jpg";
@@ -71,8 +71,8 @@ const Home = () => {
       .slider-track {
         display: flex;
         width: fit-content;
-        animation: slide 30s linear infinite;
-      }
+        animation: slide 40s linear infinite;
+      }s
       .slider-track.paused {
         animation-play-state: paused;
       }
@@ -125,7 +125,7 @@ const Home = () => {
       }
     };
   }, []);
-
+  // The data of core techonolgy and icons
   const techItems = [
     {
       title: "Digital Twin",
@@ -240,7 +240,7 @@ const Home = () => {
                 </button>
               </div>
             </div>
-            <div className="ml-0 md:ml-10 md:w-[75%] mt-6 xs:mt-8 md:mt-0 bg-white bg-clip-padding backdrop-filter backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/30">
+            <div className="ml-0 md:ml-10 md:w-[75%] mt-6 xs:mt-8 md:mt-0 bg-white bg-clip-padding backdrop-filter backdrop-blur-xl border border-white/30 rounded-xl overflow-hidden ">
               <img
                 src={industry}
                 alt="Industry 4.0"
@@ -304,7 +304,7 @@ const Home = () => {
                 <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-3xl font-black text-white mb-4 xs:mb-6">
                   <span className=" text-white">Transform Your Industry</span>
                 </h2>
-                <p className="text-gray-900 text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
+                <p className="text-gray-900 font-semibold text-lg xs:text-xl sm:text-2xl max-w-xl xs:max-w-2xl sm:max-w-3xl mx-auto">
                   Join the revolution of smart manufacturing and intelligent
                   automation
                 </p>
@@ -380,7 +380,7 @@ const Home = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
               <div className="relative z-10">
                 <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 xs:mb-6">
-                  Ready to Transform Your Manufacturing
+                  Ready to Transform Your Manufacturing ?
                 </h2>
                 <p className="text-gray-300 text-base xs:text-lg sm:text-xl mb-6 xs:mb-8 max-w-xl xs:max-w-2xl mx-auto leading-relaxed">
                   Join industry leaders who trust KURO to power their digital

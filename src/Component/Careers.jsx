@@ -230,7 +230,7 @@ const Careers = () => {
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
             Careers at{" "}
-            <strong className="text-3xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-800 to-red-600">
+            <strong className="text-3xl md:text-6xl font-extrabold text-[#ff2004]">
               KURO
             </strong>
           </h1>
@@ -238,7 +238,9 @@ const Careers = () => {
 
         <div className="relative z-10 px-4 sm:px-10 md:px-16 py-10 flex justify-start">
           <div className="w-full max-w-md bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-8 shadow-2xl">
-            <h2 className="text-2xl font-bold text-white mb-6">Apply Now</h2>
+            <h2 className="text-2xl text-center font-bold text-white mb-6">
+              Apply Now
+            </h2>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
               {formFields.map((field) => {
                 const Icon = field.icon;
@@ -312,7 +314,7 @@ const Careers = () => {
                 className={`w-full py-3 mt-4 rounded-lg text-white font-semibold transition duration-300 text-lg ${
                   isSubmitting
                     ? "bg-white/30 cursor-not-allowed"
-                    : "bg-blue-600 hover:bg-blue-700"
+                    : " bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-blue-700 rounded-xl "
                 }`}
               >
                 {isSubmitting ? (

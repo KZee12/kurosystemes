@@ -14,7 +14,6 @@ const SuccessStories = () => {
       id: "project1",
       title:
         "Driving Efficiency & Traceability for a Leading Vehicle Manufacturer",
-
       description:
         "A major vehicle manufacturer faced growing complexity on its production line.KURO deployed a complete End-to-End Traceability Platform that transformed the plant's operational backbone.",
       image: Picture1,
@@ -24,7 +23,6 @@ const SuccessStories = () => {
       id: "project2",
       title:
         "Precision Maintenance and Utilization Tracking for a Global Components Manufacturer",
-
       description:
         "A leading Tier-1 supplier in the automotive sector faced frequent unplanned stoppages and inconsistencies in die-based moulding processes.KURO deployed a smart, edge-enabled maintenance and utilization traceability system, built with robust OPC-UA integration and intelligent user workflows.",
       image: honeyMamasImage,
@@ -33,7 +31,6 @@ const SuccessStories = () => {
     {
       id: "project3",
       title: "AI-Powered Traceability for an FMCG Nano-Factory",
-
       description:
         "A fast-scaling FMCG company operating a nano-factory model producing multiple SKUs onthe same line in small lots was struggling with visibility and consistency.KURO deployed a full-stack traceability solution powered by AI and manless data entry,custom-fit for dynamic FMCG manufacturing",
       image: traditionalMedicinalsImage,
@@ -129,11 +126,11 @@ const SuccessStories = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 py-12 sm:py-16">
       <div className="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-4xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 ">
-            Our  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-       Work
-      </span>
-             <div className=" mt-2 w-24 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 section-title">
+            Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Work
+            </span>
           </h1>
         </div>
 
@@ -183,17 +180,19 @@ const SuccessStories = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
         <div
-          className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 transition-all duration-1000 ${
+          className={`relative z-10 w-full max-w-9xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="text-white max-w-none sm:max-w-3xl lg:max-w-4xl  flex flex-col justify-center text-center sm:text-left space-y-4 sm:space-y-6">
-            <h1 className="text-6xl xs:text-2xl sm:text-4xl md:text-6xl lg:text-6xl xl:text-6xl font-bold leading-tight drop-shadow-md">
-              <span className="inline text-4xl sm:inline">
-                Our Success Stories
+          <div className="text-white max-w-none sm:max-w-3xl md:max-w-6xl lg:max-w-7xl flex flex-col justify-center items-start text-left space-y-4 sm:space-y-6">
+            <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight drop-shadow-md">
+              Our{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                Success Stories
               </span>
+              <div className=" mt-2 ml-1  w-24 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-800 mx-auto rounded-full" />
             </h1>
-            <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-4xl mx-auto sm:mx-0">
+            <p className="text-lg xs:text-base sm:text-xl md:text-2xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-4xl">
               Witness our solutions in action. Driving customer success through
               full end solutions.
             </p>

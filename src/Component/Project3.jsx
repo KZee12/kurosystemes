@@ -134,9 +134,7 @@ const Project3 = () => {
           aria-label="Back to Success Stories"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium text-md sm:text-base">
-            Back to Success Stories
-          </span>
+          <span className="font-medium text-xl sm:text-base">Back</span>
         </button>
         <div className="grid grid-cols-1 gap-8 sm:gap-12 mt-8 sm:mt-10">
           <div className="image-container flex justify-center items-center">
@@ -156,7 +154,7 @@ const Project3 = () => {
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Client Challenge
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.problem}
@@ -165,14 +163,14 @@ const Project3 = () => {
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 KURO Solution
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.solution}
               </p>
               <div className="solution-list">
                 {solutionPoints.map((point, index) => (
-                                <div key={index} className="solution-item">
+                  <div key={index} className="solution-item">
                     <div className=" text-lg sm:text-xl font-semibold text-blue-400">
                       {point.title}
                     </div>
@@ -180,14 +178,13 @@ const Project3 = () => {
                       {point.description}
                     </p>
                   </div>
-
                 ))}
               </div>
             </div>
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Conclusion
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 KURO enabled the FMCG client to scale with confidence, ensuring

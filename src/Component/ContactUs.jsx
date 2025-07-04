@@ -216,7 +216,7 @@ const ContactUs = () => {
       .Button {
         width: 100%;
         height: 2.5rem;
-        background: linear-gradient(90deg, #4B5EAA, #8A4AF3);
+        background: linear-gradient(to right, #3b82f6, #9333ea);
         border: none;
         border-radius: 0.5rem;
         color: #fff;
@@ -296,12 +296,13 @@ const ContactUs = () => {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30 sm:bg-gradient-to-r sm:from-black/70 sm:via-black/40 sm:to-transparent" />
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="relative z-10 w-full max-w-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="text-white max-w-none sm:max-w-2xl lg:max-w-3xl text-center sm:text-left space-y-4 sm:space-y-6">
             <h1 className="text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold leading-tight drop-shadow-md">
               Get in Touch with Us
             </h1>
-            <p className="text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow max-w-lg sm:max-w-xl md:max-w-2xl mx-auto sm:mx-0">
+
+            <p className="whitespace-nowrap text-lg xs:text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed text-white/90 drop-shadow inline-block">
               We are here to help you connect and explore how KURO can support
               your needs.
             </p>
@@ -371,7 +372,7 @@ const ContactUs = () => {
                   </span>
                 </div>
               </div>
-              <button type="submit" className="Button">
+              <button type="submit" className="Button  ">
                 Send Message
               </button>
               {status === "loading" && (
@@ -404,8 +405,8 @@ const ContactUs = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-2xl"
               ></iframe>
-              <div className="absolute top-4 right-4 text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow-md">
-                Kuro Systems
+              <div className="absolute top-4 right-4 text-lg font-bold text-[#ff2400] drop-shadow-md">
+                KURO Systems
               </div>
             </div>
             <div className="info-card bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 md:p-8 shadow-lg space-y-4">

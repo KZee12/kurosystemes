@@ -53,11 +53,11 @@ const Accolades = () => {
 
   return (
     <>
-      <section className="hidden lg:block relative py-12 px-6 lg:px-20 mb-8">
+      <section className="hidden lg:block relative py-12 px-6 lg:px-20 mb-8 ">
         <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
-              <span className="text-transparent text-4xl bg-clip-text bg-gradient-to-r from-white to-slate-500 animate-shine bg-[length:200%_auto]">
+              <span className="text-transparent text-4xl bg-clip-text bg-white">
                 Accolades
               </span>
             </h2>
@@ -99,7 +99,7 @@ const Accolades = () => {
         <div className="relative z-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-lg p-4 sm:p-6 md:p-8">
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-white to-slate-500 animate-shine bg-[length:200%_auto]">
+              <span className="text-transparent bg-clip-text bg-white ">
                 Accolades
               </span>
             </h2>

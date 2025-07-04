@@ -30,7 +30,9 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   const [historyProgress, setHistoryProgress] = useState(0);
+  const [historyItemsVisibility, setHistoryItemsVisibility] = useState([]);
   const historyRef = useRef(null);
+  const historyItemRefs = useRef([]);
 
   const { ref: clientsRef, inView: clientsInView } = useInView({
     threshold: 0.2,
@@ -124,6 +126,10 @@ const AboutUs = () => {
   ];
 
   useEffect(() => {
+    historyItemRefs.current = historyItemRefs.current.slice(0, sections.length);
+  }, [sections.length]);
+
+  useEffect(() => {
     const updateHistoryProgress = () => {
       const el = historyRef.current;
       if (!el) return;
@@ -139,12 +145,77 @@ const AboutUs = () => {
       setHistoryProgress(Math.min(100, Math.max(0, percent)));
     };
 
-    window.addEventListener("scroll", updateHistoryProgress);
-    window.addEventListener("resize", updateHistoryProgress);
-    updateHistoryProgress();
+    // Update individual history items visibility
+    const updateHistoryItemsVisibility = () => {
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      const newVisibility = historyItemRefs.current.map((ref) => {
+        if (!ref) return { opacity: 0, translateY: 50 };
+
+        const rect = ref.getBoundingClientRect();
+        const elementTop = rect.top + scrollTop;
+        const elementBottom = elementTop + rect.height;
+        const viewportTop = scrollTop;
+        const viewportBottom = scrollTop + windowHeight;
+
+        // Calculate visibility based on element position relative to viewport
+        const visibleHeight = Math.max(
+          0,
+          Math.min(elementBottom, viewportBottom) -
+            Math.max(elementTop, viewportTop)
+        );
+        const visibilityRatio = visibleHeight / rect.height;
+
+        // Enhanced animation calculations
+        const centerPoint = elementTop + rect.height / 2;
+        const viewportCenter = viewportTop + windowHeight / 2;
+        const distanceFromCenter = Math.abs(centerPoint - viewportCenter);
+        const maxDistance = windowHeight / 2 + rect.height / 2;
+
+        let opacity = 0;
+        let translateY = 50;
+        let scale = 0.9;
+
+        if (visibilityRatio > 0) {
+          // Element is at least partially visible
+          const normalizedDistance = Math.max(
+            0,
+            1 - distanceFromCenter / maxDistance
+          );
+          opacity = Math.min(1, normalizedDistance * 1.2);
+          translateY = (1 - normalizedDistance) * 50;
+          scale = 0.9 + normalizedDistance * 0.1;
+
+          // Smooth transition when element is fully in view
+          if (visibilityRatio > 0.3) {
+            opacity = Math.min(1, opacity + 0.3);
+            translateY = Math.max(0, translateY - 20);
+          }
+        }
+
+        return {
+          opacity: Math.max(0, Math.min(1, opacity)),
+          translateY: Math.max(0, translateY),
+          scale: Math.max(0.9, Math.min(1, scale)),
+        };
+      });
+
+      setHistoryItemsVisibility(newVisibility);
+    };
+
+    const handleScroll = () => {
+      updateHistoryProgress();
+      updateHistoryItemsVisibility();
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll(); // Initial call
+
     return () => {
-      window.removeEventListener("scroll", updateHistoryProgress);
-      window.removeEventListener("resize", updateHistoryProgress);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
@@ -154,39 +225,44 @@ const AboutUs = () => {
       .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding-left: 32px; }
       .history-progress-track { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; }
       .history-progress-fill { position: absolute; left: 0; top: 0; width: 6px; background: #3b82f6; border-radius: 3px; transition: height 0.1s ease; }
+      
+      .history-item-animated {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
       @keyframes movedown {
-      0% {
-        opacity: 0;
-        transform: translateY(-30px);
+        0% {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0px);
-      }
-    }
 
-    @keyframes moveline {
-      0% {
-        height: 0;
+      @keyframes moveline {
+        0% {
+          height: 0;
+        }
+        100% {
+          height: 100%;
+        }
       }
-      100% {
-        height: 100%;
-      }
-    }
 
-    .animation-delay-0 {
-      animation-delay: 0s;
-    }
-    .animation-delay-1 {
-      animation-delay: 1s;
-    }
-    .animation-delay-2 {
-      animation-delay: 2s;
-    }
-    .animation-delay-3 {
-      animation-delay: 3s;
-    }
-    
+      .animation-delay-0 {
+        animation-delay: 0s;
+      }
+      .animation-delay-1 {
+        animation-delay: 1s;
+      }
+      .animation-delay-2 {
+        animation-delay: 2s;
+      }
+      .animation-delay-3 {
+        animation-delay: 3s;
+      }
+      
       .flip-card {
         perspective: 1000px;
         height: 220px;
@@ -244,7 +320,6 @@ const AboutUs = () => {
         50% { opacity: 1; }
       }
       
-    
       @media (min-width: 1024px) {
         .flip-card {
           height: 240px;
@@ -275,7 +350,6 @@ const AboutUs = () => {
       
       /* Tablet styles */
       @media (min-width: 641px) and (max-width: 768px) {
-       
         .flip-card {
           height: 180px;
           margin-bottom: 1.5rem;
@@ -294,54 +368,34 @@ const AboutUs = () => {
         }
       }
       
-      
       @media (max-width: 640px) {
-       
-       .timeline-mobile {
-      padding-left: 2rem;
-    }
-    
-    .timeline-item-mobile {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      width: 100% !important;
-    }
-    
-    .timeline-dot {
-      position: absolute;
-      left: -1.75rem;
-      top: 1rem;
-      width: 0.75rem;
-      height: 0.75rem;
-      background-color: #60a5fa;
-      border-radius: 50%;
-      border: 2px solid white;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .animate-movedown {
-      animation-duration: 1.5s;
-    }
-    
-    .animation-delay-1 {
-      animation-delay: 0.5s;
-    }
-    .animation-delay-2 {
-      animation-delay: 1s;
-    }
-    .animation-delay-3 {
-      animation-delay: 1.5s;
-    }
+        .timeline-mobile {
+          padding-left: 2rem;
+        }
+        
+        .timeline-item-mobile {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          width: 100% !important;
+        }
+        
+        .timeline-dot {
+          position: absolute;
+          left: -1.75rem;
+          top: 1rem;
+          width: 0.75rem;
+          height: 0.75rem;
+          background-color: #60a5fa;
+          border-radius: 50%;
+          border: 2px solid white;
+        }
       }
       
-    
       @media (max-width: 480px) {
-      .timeline-mobile {
-      padding-left: 1.5rem;
-    }
-
-       
+        .timeline-mobile {
+          padding-left: 1.5rem;
+        }
+        
         .flip-card { 
           height: 170px;
           margin-bottom: 1.75rem;
@@ -414,13 +468,13 @@ const AboutUs = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-3 sm:gap-4">
             <button
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto min-w-[120px]"
+              className="border border-white/20 rounded-xl  bg-gradient-to-r from-blue-500 to-purple-500  text-white px-6 py-2  hover:bg-blue-  text-sm sm:text-base w-full md:w-[200px] "
               onClick={() => navigate("/offering")}
             >
               Learn More →
             </button>
             <button
-              className="border border-white text-white px-6 py-2 rounded-md hover:bg-white hover:text-blue-800 text-sm sm:text-base w-full sm:w-auto min-w-[120px]"
+              className="border border-white/20 rounded-xl   text-white px-6 py-2  hover:bg-white hover:text-blue-800 text-sm sm:text-base w-full md:w-[200px]"
               onClick={() => navigate("/contactus")}
             >
               Get In Touch →
@@ -434,7 +488,7 @@ const AboutUs = () => {
           ref={historyRef}
           className="relative max-w-6xl mx-auto px-4 sm:px-6"
         >
-          <div className="text-center mb-6 sm:mb-8 md:mb-10 font-bold">
+          <div className="text-center mt-10 mb-6 sm:mb-8 md:mb-10 font-bold">
             <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-2 sm:mb-3">
               Our{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
@@ -450,30 +504,27 @@ const AboutUs = () => {
           {sections.map((section, idx) => (
             <div
               key={idx}
+              ref={(el) => (historyItemRefs.current[idx] = el)}
               className={`
-        relative 
-        w-full
-        pl-8 lg:pl-0
-        lg:w-11/12 xl:w-3/4 2xl:w-1/2
-        p-3 sm:p-4 md:p-6 lg:p-8 
-        animate-[movedown_2s_linear_forwards] 
-        opacity-0 
-        ${
-          idx % 2 === 0
-            ? "lg:mr-auto lg:pr-3 xl:pr-6 2xl:pr-8"
-            : "lg:ml-auto lg:pl-3 xl:pl-6 2xl:pl-8"
-        } 
-        ${
-          idx === 0
-            ? "animation-delay-0"
-            : idx === 1
-            ? "animation-delay-1"
-            : idx === 2
-            ? "animation-delay-2"
-            : "animation-delay-3"
-        }
-        mb-6 sm:mb-8
-      `}
+                history-item-animated
+                relative 
+                w-full
+                pl-8 lg:pl-0
+                lg:w-11/12 xl:w-3/4 2xl:w-1/2
+                p-3 sm:p-4 md:p-6 lg:p-8 
+                ${
+                  idx % 2 === 0
+                    ? "lg:mr-auto lg:pr-3 xl:pr-6 2xl:pr-8"
+                    : "lg:ml-auto lg:pl-3 xl:pl-6 2xl:pl-8"
+                } 
+                mb-6 sm:mb-8
+              `}
+              style={{
+                opacity: historyItemsVisibility[idx]?.opacity || 0,
+                transform: `translateY(${
+                  historyItemsVisibility[idx]?.translateY || 50
+                }px) scale(${historyItemsVisibility[idx]?.scale || 0.9})`,
+              }}
             >
               <div className="bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 relative shadow-lg">
                 <div className="mb-2 sm:mb-3 md:mb-4 font-semibold text-xl sm:text-xl md:text-xl lg:text-2xl text-center text-blue-400">
@@ -486,17 +537,17 @@ const AboutUs = () => {
                 {/* Triangle pointer */}
                 <span
                   className={`
-            absolute top-4 sm:top-6 md:top-8 
-            border-t-[6px] border-b-[6px] sm:border-t-[8px] sm:border-b-[8px] md:border-t-[10px] md:border-b-[10px] lg:border-t-[12px] lg:border-b-[12px]
-            border-t-transparent border-b-transparent 
-            left-[-6px] border-r-[6px] border-r-white/20
-            lg:border-r-0 lg:left-auto lg:right-auto
-            ${
-              idx % 2 === 0
-                ? "lg:right-[-8px] xl:right-[-10px] 2xl:right-[-12px] lg:border-l-[8px] xl:border-l-[10px] 2xl:border-l-[12px] lg:border-l-white/20"
-                : "lg:left-[-8px] xl:left-[-10px] 2xl:left-[-12px] lg:border-r-[8px] xl:border-r-[10px] 2xl:border-r-[12px] lg:border-r-white/20"
-            }
-          `}
+                    absolute top-4 sm:top-6 md:top-8 
+                    border-t-[6px] border-b-[6px] sm:border-t-[8px] sm:border-b-[8px] md:border-t-[10px] md:border-b-[10px] lg:border-t-[12px] lg:border-b-[12px]
+                    border-t-transparent border-b-transparent 
+                    left-[-6px] border-r-[6px] border-r-white/20
+                    lg:border-r-0 lg:left-auto lg:right-auto
+                    ${
+                      idx % 2 === 0
+                        ? "lg:right-[-8px] xl:right-[-10px] 2xl:right-[-12px] lg:border-l-[8px] xl:border-l-[10px] 2xl:border-l-[12px] lg:border-l-white/20"
+                        : "lg:left-[-8px] xl:left-[-10px] 2xl:left-[-12px] lg:border-r-[8px] xl:border-r-[10px] 2xl:border-r-[12px] lg:border-r-white/20"
+                    }
+                  `}
                 ></span>
               </div>
             </div>
@@ -559,7 +610,7 @@ const AboutUs = () => {
             intent is clear: to build accessible, intelligent, and future-ready
             automation solutions that power the manufacturing industry both at
             scale and at the grassroots. We're here to ensure{" "}
-            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-300">
+            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-400">
               INDUSTRY 4.0
             </span>{" "}
             isn't exclusive but inclusive, scalable, and transformative for all.
@@ -585,7 +636,7 @@ const AboutUs = () => {
           </div>
 
           <motion.div
-            className="max-w-7xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 items-center"
+            className="max-w-7xl mx-auto grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-3 sm:gap-4 items-center"
             variants={containerVariants}
             initial="hidden"
             animate={clientsInView ? "visible" : "hidden"}

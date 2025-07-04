@@ -138,13 +138,11 @@ operational backbone.`,
       <div className="max-w-7xl mx-auto">
         <button
           onClick={() => navigate("/successtories")}
-          className="flex items-center gap-2 text-gray-100 hover:text-white back-button"
+          className="flex w-auto items-center gap-2 text-gray-100 hover:text-white back-button"
           aria-label="Back to Success Stories"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span className="font-medium text-md sm:text-base">
-            Back to Success Stories
-          </span>
+          <span className="font-medium text-xl sm:text-base">Back</span>
         </button>
         <div className="grid grid-cols-1 gap-8 sm:gap-12 mt-8 sm:mt-10">
           <div className="image-container flex justify-center items-center">
@@ -164,7 +162,7 @@ operational backbone.`,
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
                 Client Problem
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.problem}
@@ -173,7 +171,7 @@ operational backbone.`,
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 ">
                 KURO Solution
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 {project.solution}
@@ -194,7 +192,7 @@ operational backbone.`,
             <div className="content-card">
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Conclusion
-                 <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+                <div className="ml-0 mt-1 w-20 xs:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
               </h3>
               <p className="text-gray-300 leading-relaxed text-md sm:text-lg">
                 This transformation positioned KURO not just as a technology
