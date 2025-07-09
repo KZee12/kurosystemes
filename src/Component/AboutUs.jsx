@@ -25,6 +25,7 @@ import Supermax from "../assets/Client/Supermax logo.png";
 import TDK from "../assets/Client/TDK logo.png";
 import ThyssenKrupp from "../assets/Client/thyssenkrup.png";
 import UnitedSpirits from "../assets/Client/United Spirits Logo.png";
+import Coreimg from "../assets/YourCore.png";
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -41,18 +42,31 @@ const AboutUs = () => {
   const { ref: philosophyRef, inView: philosophyInView } = useInView({
     threshold: 0.2,
     triggerOnce: true,
+    rootMargin: "-100px 0px",
   });
-
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
   };
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, delay: i * 0.2, ease: "easeOut" },
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 100,
+      },
     }),
   };
 
@@ -106,22 +120,22 @@ const AboutUs = () => {
     {
       title: "Reliability",
       description:
-        "We don't just build systems that work  we build systems that keep working, consistently and effortlessly. Our solutions are designed to be stress free for our customers, minimizing downtime and maximizing trust.",
+        "We don't just build systems that work.we build systems that keep working,consistently and effortlessly. Our solutions are designed to be stress-free for our customers, minimizing downtime and maximizing trust.",
     },
     {
       title: "Customer Satisfaction",
       description:
-        "Every deployment is a promise  that the solution will deliver measurable value, exceed expectations, and help customers realize clear, effective returns on their investments. We stay with our clients until success is not just promised, but proven.",
+        "We don’t just deliver solutions  we deliver results. Every deployment is backed by real value, clear ROI, and our commitment to stay until success is undeniable",
     },
     {
       title: "Relentless Innovation",
       description:
-        "We constantly challenge conventions. While others catch up, KURO stays ahead  bringing tomorrow's technology to the factory floor today. Our mission is to make cutting-edge Industry 4.0 solutions not just futuristic, but accessible and practical for all.",
+        "At KURO, we don’t follow trends  we set them. While others play catch-up, we bring tomorrow’s tech to the factory floor today. Industry 4.0 made practical, for everyone.",
     },
     {
       title: "Mastery",
       description:
-        "Excellence is not an act  it's our habit. Every member of the KURO team is committed to the pursuit of mastery, refining skills and knowledge to deliver only the very best  every time, without compromise.",
+        "Excellence is not an act it's our habit. Every member of the KURO team is committed to the pursuit of mastery, refining skills and knowledge to deliver only the very best every time, without compromise.",
     },
   ];
 
@@ -145,7 +159,6 @@ const AboutUs = () => {
       setHistoryProgress(Math.min(100, Math.max(0, percent)));
     };
 
-    // Update individual history items visibility
     const updateHistoryItemsVisibility = () => {
       const windowHeight = window.innerHeight;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -159,7 +172,6 @@ const AboutUs = () => {
         const viewportTop = scrollTop;
         const viewportBottom = scrollTop + windowHeight;
 
-        // Calculate visibility based on element position relative to viewport
         const visibleHeight = Math.max(
           0,
           Math.min(elementBottom, viewportBottom) -
@@ -167,7 +179,6 @@ const AboutUs = () => {
         );
         const visibilityRatio = visibleHeight / rect.height;
 
-        // Enhanced animation calculations
         const centerPoint = elementTop + rect.height / 2;
         const viewportCenter = viewportTop + windowHeight / 2;
         const distanceFromCenter = Math.abs(centerPoint - viewportCenter);
@@ -178,7 +189,6 @@ const AboutUs = () => {
         let scale = 0.9;
 
         if (visibilityRatio > 0) {
-          // Element is at least partially visible
           const normalizedDistance = Math.max(
             0,
             1 - distanceFromCenter / maxDistance
@@ -187,7 +197,6 @@ const AboutUs = () => {
           translateY = (1 - normalizedDistance) * 50;
           scale = 0.9 + normalizedDistance * 0.1;
 
-          // Smooth transition when element is fully in view
           if (visibilityRatio > 0.3) {
             opacity = Math.min(1, opacity + 0.3);
             translateY = Math.max(0, translateY - 20);
@@ -211,7 +220,7 @@ const AboutUs = () => {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -246,7 +255,7 @@ const AboutUs = () => {
           height: 0;
         }
         100% {
-          height: 100%;
+          Kaufheight: 100%;
         }
       }
 
@@ -274,13 +283,12 @@ const AboutUs = () => {
         position: relative;
         width: 100%;
         height: 100%;
-        transition: transform 0.6s;
+        transition: transform 0.8s ease-in-out;
         transform-style: preserve-3d;
         border-radius: 12px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       }
-      .flip-card:hover .flip-card-inner,
-      .flip-card:active .flip-card-inner {
+      .flip-card:hover .flip-card-inner {
         transform: rotateY(180deg);
       }
       .flip-card-front, .flip-card-back {
@@ -299,8 +307,9 @@ const AboutUs = () => {
       }
       .flip-card-front {
         background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.3);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
       .flip-card-back {
         background: linear-gradient(135deg, #1e3a8a, #3b82f6);
@@ -319,7 +328,6 @@ const AboutUs = () => {
         0%, 100% { opacity: 0; }
         50% { opacity: 1; }
       }
-      
       @media (min-width: 1024px) {
         .flip-card {
           height: 240px;
@@ -329,7 +337,6 @@ const AboutUs = () => {
         }
       }
       
-      /* Desktop styles */
       @media (min-width: 769px) and (max-width: 1023px) {
         .timeline-item { 
           width: 400px;
@@ -348,27 +355,33 @@ const AboutUs = () => {
         }
       }
       
-      /* Tablet styles */
       @media (min-width: 641px) and (max-width: 768px) {
-        .flip-card {
-          height: 180px;
+      .flip-card {
+          height: 200px;
           margin-bottom: 1.5rem;
         }
         .flip-card-front, .flip-card-back {
           padding: 16px;
         }
-        .flip-card-front h3,
-        .flip-card-back h3 {
-          font-size: 1.1rem;
-          margin-bottom: 12px;
+        .flip-card:active .flip-card-inner {
+          transform: rotateY(180deg);
         }
-        .flip-card-back p {
-          font-size: 0.85rem;
-          line-height: 1.4;
-        }
+
       }
       
       @media (max-width: 640px) {
+      .flip-card {
+          height: 180px;
+        }
+        .flip-card-front h4,
+        .flip-card-back h4 {
+          font-size: 0.8rem;
+          margin-bottom: 8px;
+        }
+        .flip-card-back p {
+          font-size: 0.8rem;
+          line-height: 1.4;
+        }
         .timeline-mobile {
           padding-left: 2rem;
         }
@@ -417,7 +430,6 @@ const AboutUs = () => {
         }
       }
       
-      /* Extra small screens */
       @media (max-width: 360px) {
         .flip-card { 
           height: 160px;
@@ -445,12 +457,9 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <section className="w-full p-0 m-0 overflow-x-hidden">
-      {/* hero */}
+    <section className="w-full max-w-full p-0 m-0 overflow-x-hidden">
       <div
-        className="relative bg-cover bg-center 
-        min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] 
-        w-full flex items-center justify-center md:justify-end px-4 sm:px-6 md:px-16"
+        className="relative bg-cover bg-center min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] w-full flex items-center justify-center md:justify-end px-4 sm:px-6 md:px-16"
         style={{ backgroundImage: `url(${a})` }}
       >
         <div className="absolute inset-0 bg-black/40" />
@@ -458,7 +467,7 @@ const AboutUs = () => {
         <div className="relative z-10 max-w-4xl text-white text-center md:text-right space-y-4 md:space-y-6">
           <h1 className="text-xl sm:text-[24px] md:text-4xl lg:text-5xl font-bold whitespace-nowrap">
             Empowering Your Business with{" "}
-            <strong className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold  text-[#ff2400] inline">
+            <strong className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#ff2400] inline">
               KURO
             </strong>
           </h1>
@@ -468,13 +477,13 @@ const AboutUs = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-3 sm:gap-4">
             <button
-              className="border border-white/20 rounded-xl  bg-gradient-to-r from-blue-500 to-purple-500  text-white px-6 py-2  hover:bg-blue-  text-sm sm:text-base w-full md:w-[200px] "
+              className="border border-white/20 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 hover:bg-blue- text-sm sm:text-base w-full md:w-[200px]"
               onClick={() => navigate("/offering")}
             >
               Learn More →
             </button>
             <button
-              className="border border-white/20 rounded-xl   text-white px-6 py-2  hover:bg-white hover:text-blue-800 text-sm sm:text-base w-full md:w-[200px]"
+              className="border border-white/20 rounded-xl text-white px-6 py-2 hover:bg-white hover:text-blue-800 text-sm sm:text-base w-full md:w-[200px]"
               onClick={() => navigate("/contactus")}
             >
               Get In Touch →
@@ -483,7 +492,6 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-16 space-y-8 sm:space-y-12 md:space-y-16">
-        {/* History Section */}
         <div
           ref={historyRef}
           className="relative max-w-6xl mx-auto px-4 sm:px-6"
@@ -495,8 +503,6 @@ const AboutUs = () => {
                 History
               </span>
             </h2>
-
-            {/* Timeline line */}
             <div className="mt-4 sm:mt-6 absolute w-1 md:w-1.5 h-full bg-[#00abf0] left-4 lg:left-1/2 transform lg:-translate-x-1/2 animate-[moveline_7s_linear_forwards] z-[-1]"></div>
             <div className="w-20 sm:w-24 md:w-28 lg:w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </div>
@@ -533,8 +539,6 @@ const AboutUs = () => {
                 <p className="text-white text-md sm:text-sm md:text-base lg:text-lg leading-relaxed">
                   {section.content}
                 </p>
-
-                {/* Triangle pointer */}
                 <span
                   className={`
                     absolute top-4 sm:top-6 md:top-8 
@@ -553,74 +557,83 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
-
-        {/* Core Philosophy */}
+        {/* // core technology */}
         <div
-          ref={philosophyRef}
-          className="  clients-section pt-3   sm:mb-8 text-center"
+          className="w-full max-w-full relative bg-cover bg-center min-h-[50vh] sm:min-h-[55vh] md:min-h-[60vh] lg:min-h-[70vh] py-12 sm:py-16 md:py-20 "
+          style={{
+            backgroundImage:
+              window.innerWidth >= 640 ? `url(${Coreimg})` : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <div className=" mt-10 text-center mb-8 sm:mb-10 font-bold">
-            <h2 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-3 sm:mb-4 text-center section-heading">
-              Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Core Philosophy
-              </span>
-            </h2>
-            <div className="w-40 sm:w-48 md:w-52 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-          </div>
-
-          <motion.div
-            className="max-w-8xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate={philosophyInView ? "visible" : "hidden"}
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div
+            ref={philosophyRef}
+            className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 clients-section pt-3 sm:mb-8 text-center"
           >
-            {philosophyCards.map((card, idx) => (
-              <motion.div
-                key={idx}
-                className="flip-card"
-                custom={idx}
-                variants={itemVariants}
-              >
-                <div className="flip-card-inner">
-                  <div className="flip-card-front">
-                    <h3 className="text-lg sm:text-xl font-semibold text-blue-400 mb-3">
-                      {card.title}
-                    </h3>
+            <div className="mt-5 text-center mb-8 sm:mb-10 font-bold">
+              <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white mb-7 sm:mb-4 text-center section-heading">
+                Our{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  Core Philosophy
+                </span>
+              </h2>
+              <div className="w-40 sm:w-48 md:w-52 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+            </div>
 
-                    <span className="hover-prompt lg:hidden">Tap Here</span>
+            <motion.div
+              className="max-w-8xl mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+              variants={containerVariants}
+              initial="hidden"
+              animate={philosophyInView ? "visible" : "hidden"}
+            >
+              {philosophyCards.map((card, idx) => (
+                <motion.div
+                  key={idx}
+                  className="flip-card"
+                  custom={idx}
+                  variants={itemVariants}
+                >
+                  <div className="flip-card-inner">
+                    <div className="flip-card-front">
+                      <h3 className="text-lg sm:text-xl font-semibold text-blue-400 mb-3">
+                        {card.title}
+                      </h3>
+                      <div className="hover-prompt lg:hidden">Tap to flip</div>
+                    </div>
+                    <div className="flip-card-back">
+                      <h3 className="text-lg sm:text-xl font-semibold text-violet-200 mb-3">
+                        {card.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-white leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flip-card-back">
-                    <h3 className="text-2xl sm:text-xl font-semibold text-violet-200 mb-3">
-                      {card.title}
-                    </h3>
-                    <p className="text-md sm:text-sm text-white">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-          <p className="  text-gray-300 mt-6 sm:mt-8 md:mt-10 text-lg sm:text-base md:text-xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
-            With these principles at our core,{" "}
-            <span className="text-xl sm:text-xl md:text-3xl font-bold text-[#ff2400]">
-              KURO's
-            </span>{" "}
-            intent is clear: to build accessible, intelligent, and future-ready
-            automation solutions that power the manufacturing industry both at
-            scale and at the grassroots. We're here to ensure{" "}
-            <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-400">
-              INDUSTRY 4.0
-            </span>{" "}
-            isn't exclusive but inclusive, scalable, and transformative for all.
-          </p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <p className="text-gray-300 mt-12 sm:mt-8 md:mt-10 text-lg sm:text-base md:text-2xl max-w-8xl mx-auto mb-6 sm:mb-8 px-4 space-y-3">
+              With these principles at our core,{" "}
+              <span className="text-2xl sm:text-2xl md:text-3xl font-bold text-[#ff2400]">
+                KURO's
+              </span>{" "}
+              intent is clear: to build accessible, intelligent, and
+              future-ready automation solutions that power the manufacturing
+              industry both at scale and at the grassroots. We're here to ensure{" "}
+              <span className="text-xl sm:text-xl md:text-2xl font-bold text-blue-400">
+                INDUSTRY 4.0
+              </span>{" "}
+              isn't exclusive but inclusive, scalable, and transformative for
+              all.
+            </p>
+          </div>
         </div>
 
-        {/* Accolades */}
         <Accolades />
 
-        {/* Clients Logos */}
         <div
           ref={clientsRef}
           className="flex justify-center flex-wrap clients-section pt-3"

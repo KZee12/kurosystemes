@@ -197,11 +197,9 @@ const Home = () => {
             <div className="md:w-2/3">
               <h1 className="text-4xl xs:text-3xl md:text-[40px] font-bold leading-tight mb-4">
                 <span className="font-serif text-white ">
-                  Making Production as easy as
+                  Streamline the Production
                 </span>{" "}
-                <span className="font-serif  text-white ">
-                  the flick of fingers
-                </span>
+                <span className="font-serif  text-white ">in a Snap</span>
               </h1>
               <p className="text-gray-300 mt-4 mb-6 text-lg xs:text-lg md:text-xl space-y-3">
                 At{" "}
