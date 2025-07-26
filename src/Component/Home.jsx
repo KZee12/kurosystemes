@@ -48,6 +48,9 @@ const Home = () => {
 
     const style = document.createElement("style");
     style.innerHTML = `
+      html {
+        scroll-behavior: smooth;
+      }
       .explore-button {
         background: linear-gradient(to right, #3b82f6, #9333ea);
         padding: 0.75rem 1.5rem;
@@ -130,7 +133,7 @@ const Home = () => {
         width: 100%;
         height: 100%;
         border: none;
-        pointer-events: auto;
+        pointer-events: none; /* Changed to none to prevent interaction lag */
       }
       
       /* Enhanced watermark cover */
@@ -225,7 +228,7 @@ const Home = () => {
           >
             <iframe
               src="https://my.spline.design/abstractnirvana-SGhxFQNCxaAUAvFoWQWlV9Ex/"
-              className="absolute top-0 left-0 w-full h-full min-w-full border-none pointer-events-auto"
+              className="absolute top-0 left-0 w-full h-full min-w-full border-none pointer-events-none" /* Changed to none */
               title="3D Background"
               loading="lazy"
               style={{ minWidth: "100%" }}
@@ -239,7 +242,7 @@ const Home = () => {
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
             <div className="max-w-8xl mx-auto">
               <h1 className="text-4xl -mt-20 sm:-mt-32  md:text-5xl lg:text-6xl font-black mb-6 leading-snug">
-                Streamline a Production in a{" "}
+                Streamline your Production in a{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
                   Snap
                 </span>

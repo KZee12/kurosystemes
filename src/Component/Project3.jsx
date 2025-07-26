@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Picture3 from "../assets/pic3.png"; // Update with actual image path
+import { useEffect } from "react";
 
 const Project3 = () => {
   const navigate = useNavigate();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const project = {
     id: "project3",
     title: "AI-Powered Traceability for Fast-Scaling FMCG Nano-Factory",

@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import Picture2 from "../assets/pic2.png"; // Update with actual image path
+import { useEffect } from "react";
 
 const Project2 = () => {
   const navigate = useNavigate();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const project = {
     id: "project2",
     title:
